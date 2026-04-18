@@ -1,0 +1,698 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Kanhaiya Kumar — AI & Data Specialist</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.min.js"></script>
+<style>
+  :root {
+    --bg: #0a0a0f;
+    --surface: #111118;
+    --surface2: #17171f;
+    --border: rgba(255,255,255,0.07);
+    --accent: #6ee7b7;
+    --accent2: #818cf8;
+    --text: #f0f0f5;
+    --muted: #6b7280;
+    --card-bg: rgba(255,255,255,0.03);
+  }
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+  html{scroll-behavior:smooth}
+  body{background:var(--bg);color:var(--text);font-family:'DM Sans',sans-serif;overflow-x:hidden;line-height:1.6}
+
+  /* NAV */
+  nav{position:fixed;top:0;left:0;right:0;z-index:100;padding:20px 40px;display:flex;align-items:center;justify-content:space-between;backdrop-filter:blur(20px);background:rgba(10,10,15,0.8);border-bottom:1px solid var(--border)}
+  .nav-logo{font-family:'Syne',sans-serif;font-weight:800;font-size:1.2rem;color:var(--accent);letter-spacing:-0.5px}
+  .nav-links{display:flex;gap:32px;list-style:none}
+  .nav-links a{color:var(--muted);text-decoration:none;font-size:0.875rem;font-weight:500;transition:color 0.2s}
+  .nav-links a:hover{color:var(--text)}
+  .nav-cta{background:var(--accent);color:#0a0a0f;padding:8px 20px;border-radius:100px;font-size:0.875rem;font-weight:700;text-decoration:none;font-family:'Syne',sans-serif;transition:opacity 0.2s}
+  .nav-cta:hover{opacity:0.85}
+
+  /* HERO */
+  #home{min-height:100vh;display:flex;align-items:center;padding:120px 40px 80px;position:relative;overflow:hidden}
+  .hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(110,231,183,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(110,231,183,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none}
+  .hero-glow{position:absolute;top:-200px;right:-200px;width:600px;height:600px;background:radial-gradient(circle,rgba(110,231,183,0.12) 0%,transparent 70%);pointer-events:none}
+  .hero-glow2{position:absolute;bottom:-200px;left:-100px;width:500px;height:500px;background:radial-gradient(circle,rgba(129,140,248,0.1) 0%,transparent 70%);pointer-events:none}
+  .hero-inner{max-width:1200px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 380px;gap:80px;align-items:center;position:relative;z-index:1}
+  .hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(110,231,183,0.1);border:1px solid rgba(110,231,183,0.2);border-radius:100px;padding:6px 14px;font-size:0.75rem;color:var(--accent);font-weight:600;letter-spacing:0.5px;margin-bottom:24px}
+  .hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 2s infinite}
+  @keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.3)}}
+  h1{font-family:'Syne',sans-serif;font-size:clamp(2.8rem,5vw,4.5rem);font-weight:800;line-height:1.05;letter-spacing:-2px;margin-bottom:20px}
+  h1 span{color:var(--accent)}
+  .hero-sub{font-size:1.05rem;color:var(--muted);max-width:520px;line-height:1.7;margin-bottom:40px}
+  .hero-btns{display:flex;gap:16px;flex-wrap:wrap}
+  .btn-primary{background:var(--accent);color:#0a0a0f;padding:14px 28px;border-radius:100px;font-weight:700;text-decoration:none;font-family:'Syne',sans-serif;font-size:0.9rem;transition:all 0.2s;cursor:pointer;border:none}
+  .btn-primary:hover{transform:translateY(-2px);box-shadow:0 12px 30px rgba(110,231,183,0.3)}
+  .btn-outline{background:transparent;color:var(--text);padding:14px 28px;border-radius:100px;font-weight:600;text-decoration:none;font-family:'Syne',sans-serif;font-size:0.9rem;border:1px solid var(--border);transition:all 0.2s}
+  .btn-outline:hover{border-color:var(--accent);color:var(--accent)}
+  .hero-stats{display:flex;gap:40px;margin-top:48px}
+  .stat-num{font-family:'Syne',sans-serif;font-size:2rem;font-weight:800;color:var(--text)}
+  .stat-label{font-size:0.75rem;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+  .hero-card{background:var(--surface);border:1px solid var(--border);border-radius:24px;padding:32px;position:relative;overflow:hidden}
+  .hero-card::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--accent),var(--accent2))}
+  .avatar-ring{width:80px;height:80px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-family:'Syne',sans-serif;font-size:1.8rem;font-weight:800;color:#0a0a0f;margin-bottom:16px}
+  .hero-card h3{font-family:'Syne',sans-serif;font-size:1.3rem;font-weight:700;margin-bottom:4px}
+  .hero-card p{font-size:0.85rem;color:var(--muted);margin-bottom:20px}
+  .skill-chips{display:flex;flex-wrap:wrap;gap:8px}
+  .chip{background:rgba(110,231,183,0.08);border:1px solid rgba(110,231,183,0.15);border-radius:100px;padding:4px 12px;font-size:0.75rem;color:var(--accent);font-weight:500}
+  .chip.purple{background:rgba(129,140,248,0.08);border-color:rgba(129,140,248,0.15);color:var(--accent2)}
+
+  /* SECTION COMMON */
+  section{padding:100px 40px}
+  .section-inner{max-width:1200px;margin:0 auto}
+  .section-label{font-size:0.75rem;color:var(--accent);text-transform:uppercase;letter-spacing:2px;font-weight:600;margin-bottom:12px}
+  .section-title{font-family:'Syne',sans-serif;font-size:clamp(2rem,3.5vw,3rem);font-weight:800;letter-spacing:-1.5px;line-height:1.1;margin-bottom:16px}
+  .section-sub{color:var(--muted);font-size:1rem;max-width:500px;line-height:1.7;margin-bottom:60px}
+
+  /* ABOUT */
+  #about{background:var(--surface)}
+  .about-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .about-text p{color:var(--muted);line-height:1.8;margin-bottom:16px;font-size:0.95rem}
+  .edu-list{display:flex;flex-direction:column;gap:16px}
+  .edu-card{background:var(--card-bg);border:1px solid var(--border);border-radius:16px;padding:20px 24px;display:flex;align-items:flex-start;gap:16px;transition:border-color 0.2s}
+  .edu-card:hover{border-color:rgba(110,231,183,0.3)}
+  .edu-icon{width:40px;height:40px;border-radius:10px;background:rgba(110,231,183,0.1);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+  .edu-body h4{font-family:'Syne',sans-serif;font-size:0.9rem;font-weight:700;margin-bottom:2px}
+  .edu-body p{font-size:0.8rem;color:var(--muted)}
+  .edu-year{margin-left:auto;font-size:0.75rem;color:var(--accent);font-weight:600;white-space:nowrap}
+
+  /* SKILLS */
+  #skills{background:var(--bg)}
+  .skills-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(150px,1fr));gap:12px}
+  .skill-card{background:var(--card-bg);border:1px solid var(--border);border-radius:14px;padding:20px 16px;text-align:center;transition:all 0.2s;cursor:default}
+  .skill-card:hover{border-color:var(--accent);background:rgba(110,231,183,0.05);transform:translateY(-3px)}
+  .skill-icon{font-size:1.6rem;margin-bottom:8px}
+  .skill-name{font-size:0.8rem;font-weight:600;color:var(--muted)}
+  .skill-card:hover .skill-name{color:var(--accent)}
+
+  /* PROJECTS */
+  #projects{background:var(--surface)}
+  .projects-grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}
+  .project-card{background:var(--surface2);border:1px solid var(--border);border-radius:20px;overflow:hidden;transition:all 0.25s;cursor:pointer}
+  .project-card:hover{border-color:rgba(110,231,183,0.3);transform:translateY(-4px);box-shadow:0 20px 40px rgba(0,0,0,0.4)}
+  .project-thumb{height:200px;display:flex;align-items:center;justify-content:center;font-size:4rem;position:relative;overflow:hidden}
+  .project-thumb.green{background:linear-gradient(135deg,rgba(110,231,183,0.15),rgba(110,231,183,0.05))}
+  .project-thumb.purple{background:linear-gradient(135deg,rgba(129,140,248,0.15),rgba(129,140,248,0.05))}
+  .project-thumb.orange{background:linear-gradient(135deg,rgba(251,146,60,0.15),rgba(251,146,60,0.05))}
+  .project-thumb.blue{background:linear-gradient(135deg,rgba(56,189,248,0.15),rgba(56,189,248,0.05))}
+  .project-body{padding:24px}
+  .project-tag{font-size:0.7rem;color:var(--accent);font-weight:600;text-transform:uppercase;letter-spacing:1px;margin-bottom:8px}
+  .project-body h3{font-family:'Syne',sans-serif;font-size:1.1rem;font-weight:700;margin-bottom:8px}
+  .project-body p{font-size:0.85rem;color:var(--muted);line-height:1.6;margin-bottom:16px}
+  .project-link{display:inline-flex;align-items:center;gap:6px;font-size:0.82rem;font-weight:600;color:var(--accent);text-decoration:none;transition:gap 0.2s}
+  .project-link:hover{gap:10px}
+
+  /* PDF READER SECTION */
+  #pdf-reader{background:var(--bg);padding:100px 40px}
+  .reader-wrapper{max-width:1200px;margin:0 auto}
+  .reader-app{background:var(--surface);border:1px solid var(--border);border-radius:24px;overflow:hidden;display:grid;grid-template-rows:auto 1fr}
+  .reader-toolbar{background:var(--surface2);border-bottom:1px solid var(--border);padding:16px 24px;display:flex;align-items:center;gap:16px;flex-wrap:wrap}
+  .reader-toolbar-left{display:flex;align-items:center;gap:12px}
+  .reader-toolbar h3{font-family:'Syne',sans-serif;font-size:0.95rem;font-weight:700;color:var(--accent)}
+  .upload-btn{background:var(--accent);color:#0a0a0f;border:none;border-radius:100px;padding:8px 18px;font-size:0.8rem;font-weight:700;cursor:pointer;font-family:'Syne',sans-serif;transition:opacity 0.2s;white-space:nowrap}
+  .upload-btn:hover{opacity:0.85}
+  .page-controls{display:flex;align-items:center;gap:8px;margin-left:auto}
+  .page-btn{background:var(--card-bg);border:1px solid var(--border);color:var(--text);border-radius:8px;padding:6px 12px;cursor:pointer;font-size:0.8rem;transition:all 0.2s}
+  .page-btn:hover:not(:disabled){border-color:var(--accent);color:var(--accent)}
+  .page-btn:disabled{opacity:0.3;cursor:not-allowed}
+  .page-info{font-size:0.8rem;color:var(--muted);white-space:nowrap}
+  .reader-body{display:grid;grid-template-columns:1fr 340px;height:600px}
+  .pdf-viewer{overflow-y:auto;padding:24px;display:flex;justify-content:center;background:#1a1a24;position:relative}
+  .pdf-drop-zone{display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:var(--muted);text-align:center;gap:12px}
+  .pdf-drop-zone .big-icon{font-size:3rem;opacity:0.5}
+  .pdf-drop-zone p{font-size:0.85rem;max-width:240px;line-height:1.6}
+  #pdf-canvas{max-width:100%;border-radius:8px;box-shadow:0 8px 32px rgba(0,0,0,0.5)}
+  .chat-panel{border-left:1px solid var(--border);display:flex;flex-direction:column;background:var(--surface)}
+  .chat-header{padding:16px 20px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px}
+  .chat-avatar{width:28px;height:28px;border-radius:50%;background:linear-gradient(135deg,var(--accent),var(--accent2));display:flex;align-items:center;justify-content:center;font-size:0.7rem;font-weight:800;color:#0a0a0f;flex-shrink:0}
+  .chat-header h4{font-family:'Syne',sans-serif;font-size:0.85rem;font-weight:700}
+  .chat-header span{font-size:0.7rem;color:var(--accent);margin-left:auto}
+  .chat-messages{flex:1;overflow-y:auto;padding:16px;display:flex;flex-direction:column;gap:12px}
+  .msg{max-width:90%;border-radius:14px;padding:10px 14px;font-size:0.82rem;line-height:1.5}
+  .msg.ai{background:rgba(110,231,183,0.08);border:1px solid rgba(110,231,183,0.12);color:var(--text);align-self:flex-start;border-bottom-left-radius:4px}
+  .msg.user{background:rgba(129,140,248,0.15);border:1px solid rgba(129,140,248,0.2);color:var(--text);align-self:flex-end;border-bottom-right-radius:4px}
+  .msg.typing{display:flex;gap:4px;align-items:center;padding:14px}
+  .dot{width:6px;height:6px;background:var(--accent);border-radius:50%;animation:bounce 1.2s infinite}
+  .dot:nth-child(2){animation-delay:0.2s}
+  .dot:nth-child(3){animation-delay:0.4s}
+  @keyframes bounce{0%,80%,100%{transform:translateY(0)}40%{transform:translateY(-6px)}}
+  .chat-input-row{padding:12px;border-top:1px solid var(--border);display:flex;gap:8px;align-items:flex-end}
+  .chat-input{flex:1;background:var(--surface2);border:1px solid var(--border);color:var(--text);border-radius:12px;padding:10px 14px;font-size:0.82rem;resize:none;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s;min-height:40px;max-height:120px}
+  .chat-input:focus{border-color:var(--accent)}
+  .chat-send{background:var(--accent);color:#0a0a0f;border:none;border-radius:10px;padding:10px 14px;cursor:pointer;font-size:1rem;transition:all 0.2s;flex-shrink:0}
+  .chat-send:hover{opacity:0.85;transform:scale(1.05)}
+  .chat-send:disabled{opacity:0.4;cursor:not-allowed;transform:none}
+
+  /* CONTACT */
+  #contact{background:var(--surface)}
+  .contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:start}
+  .contact-info h2{font-family:'Syne',sans-serif;font-size:2.5rem;font-weight:800;letter-spacing:-1.5px;margin-bottom:16px;line-height:1.1}
+  .contact-info p{color:var(--muted);line-height:1.7;margin-bottom:32px}
+  .contact-item{display:flex;align-items:center;gap:14px;margin-bottom:20px}
+  .contact-icon{width:44px;height:44px;border-radius:12px;background:rgba(110,231,183,0.1);border:1px solid rgba(110,231,183,0.15);display:flex;align-items:center;justify-content:center;font-size:1.1rem;flex-shrink:0}
+  .contact-detail h5{font-size:0.8rem;color:var(--muted);font-weight:500;margin-bottom:2px}
+  .contact-detail a,
+  .contact-detail span{font-size:0.9rem;color:var(--text);text-decoration:none;font-weight:500}
+  .contact-form{background:var(--surface2);border:1px solid var(--border);border-radius:20px;padding:32px}
+  .form-row{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-bottom:16px}
+  .form-group{margin-bottom:16px}
+  .form-group label{display:block;font-size:0.8rem;color:var(--muted);font-weight:500;margin-bottom:8px}
+  .form-group input,
+  .form-group textarea{width:100%;background:var(--surface);border:1px solid var(--border);color:var(--text);border-radius:10px;padding:12px 16px;font-size:0.875rem;font-family:'DM Sans',sans-serif;outline:none;transition:border-color 0.2s}
+  .form-group input:focus,
+  .form-group textarea:focus{border-color:var(--accent)}
+  .form-group textarea{resize:vertical;min-height:100px}
+  .form-submit{width:100%;background:var(--accent);color:#0a0a0f;border:none;border-radius:100px;padding:14px;font-size:0.9rem;font-weight:700;font-family:'Syne',sans-serif;cursor:pointer;transition:all 0.2s}
+  .form-submit:hover{opacity:0.85;transform:translateY(-2px)}
+
+  /* FOOTER */
+  footer{background:var(--bg);border-top:1px solid var(--border);padding:40px;text-align:center}
+  footer p{font-size:0.8rem;color:var(--muted)}
+  footer span{color:var(--accent)}
+
+  /* MOBILE */
+  @media(max-width:768px){
+    nav{padding:16px 20px}
+    .nav-links{display:none}
+    #home{padding:100px 20px 60px}
+    .hero-inner{grid-template-columns:1fr;gap:40px}
+    .hero-stats{gap:24px}
+    section{padding:70px 20px}
+    .about-grid,.projects-grid,.contact-grid{grid-template-columns:1fr}
+    .reader-body{grid-template-columns:1fr;grid-template-rows:400px 300px;height:auto}
+    .chat-panel{border-left:none;border-top:1px solid var(--border)}
+    .form-row{grid-template-columns:1fr}
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">KK</div>
+  <ul class="nav-links">
+    <li><a href="#home">Home</a></li>
+    <li><a href="#about">About</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#pdf-reader">PDF Reader</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+  <a href="mailto:kanhaiyakumar24011@gmail.com" class="nav-cta">Let's Talk</a>
+</nav>
+
+<!-- HERO -->
+<section id="home">
+  <div class="hero-grid"></div>
+  <div class="hero-glow"></div>
+  <div class="hero-glow2"></div>
+  <div class="hero-inner">
+    <div>
+      <div class="hero-badge">Available for Opportunities</div>
+      <h1>Kanhaiya<br><span>Kumar</span></h1>
+      <p class="hero-sub">AI Enthusiast & Data Specialist passionate about building intelligent solutions — from Generative AI to library systems, I bridge information science with modern technology.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn-primary">View Projects →</a>
+        <a href="#contact" class="btn-outline">Get in Touch</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">20+</div>
+          <div class="stat-label">Skills</div>
+        </div>
+        <div>
+          <div class="stat-num">1</div>
+          <div class="stat-label">Certification</div>
+        </div>
+        <div>
+          <div class="stat-num">2+</div>
+          <div class="stat-label">Degrees</div>
+        </div>
+      </div>
+    </div>
+    <div class="hero-card">
+      <div class="avatar-ring">KK</div>
+      <h3>Kanhaiya Kumar</h3>
+      <p>AI & Data Specialist · Patna, India</p>
+      <div class="skill-chips">
+        <span class="chip">Generative AI</span>
+        <span class="chip">Data Analysis</span>
+        <span class="chip purple">HTML/MySQL</span>
+        <span class="chip purple">GitHub</span>
+        <span class="chip">MS Office</span>
+        <span class="chip">Digital Marketing</span>
+        <span class="chip purple">LLM</span>
+        <span class="chip">Library Science</span>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner">
+    <div class="about-grid">
+      <div class="about-text">
+        <p class="section-label">About Me</p>
+        <h2 class="section-title">Driven by curiosity,<br>powered by <span style="color:var(--accent)">data</span></h2>
+        <p>I'm a multidisciplinary professional with a background in Mathematics and Library & Information Science. My journey has taken me from classical data organization to cutting-edge AI — completing certifications in Machine Learning, Generative AI, and Large Language Models.</p>
+        <p>I thrive at the intersection of information management and modern technology, bringing analytical precision and creative problem-solving to every project. Based in Patna, I'm eager to contribute to dynamic teams building the future.</p>
+        <p>Beyond tech, I believe in a well-rounded life — yoga, volleyball, cricket, and creative arts all shape my discipline and teamwork mindset.</p>
+        <div style="margin-top:32px">
+          <a href="mailto:kanhaiyakumar24011@gmail.com" class="btn-primary">📧 Email Me</a>
+        </div>
+      </div>
+      <div>
+        <p class="section-label" style="margin-bottom:20px">Education</p>
+        <div class="edu-list">
+          <div class="edu-card">
+            <div class="edu-icon">🎓</div>
+            <div class="edu-body">
+              <h4>BLIS — Library & Information Science</h4>
+              <p>Swami Vivekanand Subharti University · 67.36%</p>
+            </div>
+            <span class="edu-year">2024–25</span>
+          </div>
+          <div class="edu-card">
+            <div class="edu-icon">🔢</div>
+            <div class="edu-body">
+              <h4>B.Sc Mathematics</h4>
+              <p>Munger University · 57.58%</p>
+            </div>
+            <span class="edu-year">2019–23</span>
+          </div>
+          <div class="edu-card">
+            <div class="edu-icon">🏫</div>
+            <div class="edu-body">
+              <h4>Senior Secondary (XII) — Science</h4>
+              <p>R.D College Sheikhupura · BSEB · 78.04%</p>
+            </div>
+            <span class="edu-year">2019</span>
+          </div>
+          <div class="edu-card">
+            <div class="edu-icon">📚</div>
+            <div class="edu-body">
+              <h4>Secondary (X)</h4>
+              <p>Janta High School Sirari · BSEB · 82.00%</p>
+            </div>
+            <span class="edu-year">2017</span>
+          </div>
+          <div class="edu-card" style="border-color:rgba(110,231,183,0.25)">
+            <div class="edu-icon">🤖</div>
+            <div class="edu-body">
+              <h4>AI, ML & LLM Certification</h4>
+              <p>Udemy · Library & AI Training Program</p>
+            </div>
+            <span class="edu-year">2024–25</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner">
+    <p class="section-label">Skills</p>
+    <h2 class="section-title">Tools & Technologies</h2>
+    <p class="section-sub">A versatile toolkit spanning AI, data, design, and development — ready to deliver value from day one.</p>
+    <div class="skills-grid">
+      <div class="skill-card"><div class="skill-icon">🤖</div><div class="skill-name">Artificial Intelligence</div></div>
+      <div class="skill-card"><div class="skill-icon">✨</div><div class="skill-name">Generative AI Dev</div></div>
+      <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">AI Image Generation</div></div>
+      <div class="skill-card"><div class="skill-icon">🎬</div><div class="skill-name">AI Video Generation</div></div>
+      <div class="skill-card"><div class="skill-icon">🎙️</div><div class="skill-name">AI Voiceover</div></div>
+      <div class="skill-card"><div class="skill-icon">🧠</div><div class="skill-name">AIML</div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">Data Analysis</div></div>
+      <div class="skill-card"><div class="skill-icon">📈</div><div class="skill-name">Data Visualization</div></div>
+      <div class="skill-card"><div class="skill-icon">🌐</div><div class="skill-name">HTML</div></div>
+      <div class="skill-card"><div class="skill-icon">🗄️</div><div class="skill-name">MySQL</div></div>
+      <div class="skill-card"><div class="skill-icon">📁</div><div class="skill-name">MS-Access</div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">MS-Excel</div></div>
+      <div class="skill-card"><div class="skill-icon">📝</div><div class="skill-name">MS-Word</div></div>
+      <div class="skill-card"><div class="skill-icon">📊</div><div class="skill-name">MS-PowerPoint</div></div>
+      <div class="skill-card"><div class="skill-icon">🌍</div><div class="skill-name">Digital Marketing</div></div>
+      <div class="skill-card"><div class="skill-icon">🔗</div><div class="skill-name">Computer Networking</div></div>
+      <div class="skill-card"><div class="skill-icon">🤝</div><div class="skill-name">GitHub</div></div>
+      <div class="skill-card"><div class="skill-icon">⚙️</div><div class="skill-name">Automation</div></div>
+      <div class="skill-card"><div class="skill-icon">🎨</div><div class="skill-name">Visual Design</div></div>
+      <div class="skill-card"><div class="skill-icon">📚</div><div class="skill-name">Library Science</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner">
+    <p class="section-label">Projects</p>
+    <h2 class="section-title">Work & Achievements</h2>
+    <p class="section-sub">Hands-on projects combining AI, data management, and technology into real-world applications.</p>
+    <div class="projects-grid">
+      <div class="project-card" onclick="document.getElementById('pdf-reader').scrollIntoView({behavior:'smooth'})">
+        <div class="project-thumb green">📄🤖</div>
+        <div class="project-body">
+          <div class="project-tag">AI · Featured Project</div>
+          <h3>PDF Reader with AI Chatbot</h3>
+          <p>Upload any PDF and chat with it using AI. Ask questions, get summaries, extract insights — all powered by Claude AI right in the browser.</p>
+          <a href="#pdf-reader" class="project-link">Try Live Demo →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb purple">🗂️📊</div>
+        <div class="project-body">
+          <div class="project-tag">Library Science · Data</div>
+          <h3>Library Management System</h3>
+          <p>Designed and implemented a digital cataloguing and record-handling system using MS-Access and Excel for organized information retrieval.</p>
+          <a href="#" class="project-link" onclick="return false">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb orange">✨🎨</div>
+        <div class="project-body">
+          <div class="project-tag">Generative AI</div>
+          <h3>AI Content Generation Suite</h3>
+          <p>Explored and built workflows using AI image, video, and voiceover generation tools — creating multimedia content pipelines with modern AI platforms.</p>
+          <a href="#" class="project-link" onclick="return false">View Details →</a>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-thumb blue">📈🔍</div>
+        <div class="project-body">
+          <div class="project-tag">Data Analysis</div>
+          <h3>Data Visualization Dashboard</h3>
+          <p>Built interactive data visualizations using Excel and analytical tools to transform raw datasets into actionable business insights and charts.</p>
+          <a href="#" class="project-link" onclick="return false">View Details →</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PDF READER + AI CHATBOT -->
+<section id="pdf-reader">
+  <div class="reader-wrapper">
+    <p class="section-label">Featured Project</p>
+    <h2 class="section-title" style="margin-bottom:8px">PDF Reader <span style="color:var(--accent)">+ AI Chat</span></h2>
+    <p class="section-sub">Upload a PDF, read it, and chat with the AI about its contents. Powered by Claude AI.</p>
+
+    <div class="reader-app">
+      <div class="reader-toolbar">
+        <div class="reader-toolbar-left">
+          <h3>📄 PDF Reader</h3>
+          <button class="upload-btn" onclick="document.getElementById('pdf-file-input').click()">+ Upload PDF</button>
+          <input type="file" id="pdf-file-input" accept=".pdf" style="display:none">
+          <span id="file-name" style="font-size:0.8rem;color:var(--muted)">No file loaded</span>
+        </div>
+        <div class="page-controls">
+          <button class="page-btn" id="prev-page" disabled>◀</button>
+          <span class="page-info" id="page-info">— / —</span>
+          <button class="page-btn" id="next-page" disabled>▶</button>
+        </div>
+      </div>
+
+      <div class="reader-body">
+        <!-- PDF VIEWER -->
+        <div class="pdf-viewer" id="pdf-viewer">
+          <div class="pdf-drop-zone" id="drop-zone">
+            <div class="big-icon">📄</div>
+            <p>Upload a PDF to start reading</p>
+            <p style="font-size:0.75rem;opacity:0.6">Supports any PDF document</p>
+          </div>
+          <canvas id="pdf-canvas" style="display:none"></canvas>
+        </div>
+
+        <!-- CHAT PANEL -->
+        <div class="chat-panel">
+          <div class="chat-header">
+            <div class="chat-avatar">AI</div>
+            <h4>PDF Assistant</h4>
+            <span id="chat-status">● Waiting for PDF</span>
+          </div>
+          <div class="chat-messages" id="chat-messages">
+            <div class="msg ai">👋 Hi! Upload a PDF and I'll help you understand it. Ask me anything about the document's content!</div>
+          </div>
+          <div class="chat-input-row">
+            <textarea class="chat-input" id="chat-input" placeholder="Ask about the PDF..." rows="1" disabled></textarea>
+            <button class="chat-send" id="chat-send" disabled title="Send">➤</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <p class="section-label">Contact</p>
+        <h2>Let's build something<br><span style="color:var(--accent)">great together</span></h2>
+        <p>I'm actively looking for opportunities where I can apply my analytical, technical, and AI skills. Whether it's a full-time role, freelance project, or collaboration — let's talk.</p>
+        <div class="contact-item">
+          <div class="contact-icon">📧</div>
+          <div class="contact-detail">
+            <h5>Email</h5>
+            <a href="mailto:kanhaiyakumar24011@gmail.com">kanhaiyakumar24011@gmail.com</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📱</div>
+          <div class="contact-detail">
+            <h5>Phone</h5>
+            <a href="tel:+916204403719">+91 6204403719</a>
+          </div>
+        </div>
+        <div class="contact-item">
+          <div class="contact-icon">📍</div>
+          <div class="contact-detail">
+            <h5>Location</h5>
+            <span>Patna, Bihar, India</span>
+          </div>
+        </div>
+      </div>
+      <div class="contact-form">
+        <div class="form-row">
+          <div class="form-group">
+            <label>First Name</label>
+            <input type="text" placeholder="John">
+          </div>
+          <div class="form-group">
+            <label>Last Name</label>
+            <input type="text" placeholder="Doe">
+          </div>
+        </div>
+        <div class="form-group">
+          <label>Email</label>
+          <input type="email" placeholder="john@example.com">
+        </div>
+        <div class="form-group">
+          <label>Subject</label>
+          <input type="text" placeholder="Project collaboration">
+        </div>
+        <div class="form-group">
+          <label>Message</label>
+          <textarea placeholder="Tell me about your project or opportunity..."></textarea>
+        </div>
+        <button class="form-submit" onclick="alert('Message sent! (Demo — connect this to a backend)')">Send Message →</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 <span>Kanhaiya Kumar</span> · Built with passion · Patna, India</p>
+</footer>
+
+<script>
+// ============== PDF.JS SETUP ==============
+const pdfjsLib = window['pdfjs-dist/build/pdf'];
+pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
+
+let pdfDoc = null;
+let currentPage = 1;
+let totalPages = 0;
+let pdfText = '';
+let isRendering = false;
+
+const canvas = document.getElementById('pdf-canvas');
+const ctx = canvas.getContext('2d');
+const dropZone = document.getElementById('drop-zone');
+const prevBtn = document.getElementById('prev-page');
+const nextBtn = document.getElementById('next-page');
+const pageInfo = document.getElementById('page-info');
+const fileInput = document.getElementById('pdf-file-input');
+const fileName = document.getElementById('file-name');
+const chatStatus = document.getElementById('chat-status');
+
+async function renderPage(num) {
+  if (isRendering) return;
+  isRendering = true;
+  const page = await pdfDoc.getPage(num);
+  const viewport = page.getViewport({ scale: 1.4 });
+  canvas.width = viewport.width;
+  canvas.height = viewport.height;
+  await page.render({ canvasContext: ctx, viewport }).promise;
+  pageInfo.textContent = `${num} / ${totalPages}`;
+  prevBtn.disabled = num <= 1;
+  nextBtn.disabled = num >= totalPages;
+  isRendering = false;
+}
+
+async function extractAllText(pdf) {
+  let text = '';
+  for (let i = 1; i <= Math.min(pdf.numPages, 20); i++) {
+    const page = await pdf.getPage(i);
+    const content = await page.getTextContent();
+    text += `\n--- Page ${i} ---\n` + content.items.map(item => item.str).join(' ');
+  }
+  return text;
+}
+
+async function loadPDF(file) {
+  fileName.textContent = file.name;
+  const arrayBuffer = await file.arrayBuffer();
+  pdfDoc = await pdfjsLib.getDocument({ data: arrayBuffer }).promise;
+  totalPages = pdfDoc.numPages;
+  currentPage = 1;
+
+  dropZone.style.display = 'none';
+  canvas.style.display = 'block';
+  await renderPage(currentPage);
+
+  // Extract text for AI
+  addMessage('ai', `📄 PDF loaded: "${file.name}" (${totalPages} pages). Extracting text...`);
+  chatStatus.textContent = '● Extracting...';
+  chatStatus.style.color = '#fbbf24';
+  pdfText = await extractAllText(pdfDoc);
+  chatStatus.textContent = '● Ready';
+  chatStatus.style.color = 'var(--accent)';
+  document.getElementById('chat-input').disabled = false;
+  document.getElementById('chat-send').disabled = false;
+  addMessage('ai', `✅ Ready! I've read ${totalPages} page(s). Ask me anything about this PDF — summaries, specific info, questions, anything!`);
+}
+
+fileInput.addEventListener('change', e => {
+  if (e.target.files[0]) loadPDF(e.target.files[0]);
+});
+
+prevBtn.addEventListener('click', () => { if (currentPage > 1) { currentPage--; renderPage(currentPage); } });
+nextBtn.addEventListener('click', () => { if (currentPage < totalPages) { currentPage++; renderPage(currentPage); } });
+
+// Drag and drop
+const pdfViewer = document.getElementById('pdf-viewer');
+pdfViewer.addEventListener('dragover', e => { e.preventDefault(); pdfViewer.style.borderColor = 'var(--accent)'; });
+pdfViewer.addEventListener('dragleave', () => { pdfViewer.style.borderColor = ''; });
+pdfViewer.addEventListener('drop', e => {
+  e.preventDefault();
+  pdfViewer.style.borderColor = '';
+  const file = e.dataTransfer.files[0];
+  if (file && file.type === 'application/pdf') loadPDF(file);
+});
+
+// ============== AI CHAT ==============
+const messagesDiv = document.getElementById('chat-messages');
+const chatInput = document.getElementById('chat-input');
+const sendBtn = document.getElementById('chat-send');
+
+function addMessage(role, text) {
+  const div = document.createElement('div');
+  div.className = `msg ${role}`;
+  div.textContent = text;
+  messagesDiv.appendChild(div);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+  return div;
+}
+
+function addTyping() {
+  const div = document.createElement('div');
+  div.className = 'msg ai typing';
+  div.id = 'typing-indicator';
+  div.innerHTML = '<div class="dot"></div><div class="dot"></div><div class="dot"></div>';
+  messagesDiv.appendChild(div);
+  messagesDiv.scrollTop = messagesDiv.scrollHeight;
+}
+
+function removeTyping() {
+  const t = document.getElementById('typing-indicator');
+  if (t) t.remove();
+}
+
+async function sendMessage() {
+  const text = chatInput.value.trim();
+  if (!text || !pdfText) return;
+
+  addMessage('user', text);
+  chatInput.value = '';
+  chatInput.disabled = true;
+  sendBtn.disabled = true;
+  addTyping();
+
+  const truncatedText = pdfText.slice(0, 12000);
+  const systemPrompt = `You are an intelligent PDF assistant. The user has uploaded a PDF document. Here is the extracted text content:\n\n${truncatedText}\n\nAnswer questions based ONLY on this PDF content. Be concise, helpful, and accurate. If something isn't in the document, say so clearly.`;
+
+  try {
+    const response = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        model: 'claude-sonnet-4-20250514',
+        max_tokens: 1000,
+        system: systemPrompt,
+        messages: [{ role: 'user', content: text }]
+      })
+    });
+
+    const data = await response.json();
+    removeTyping();
+
+    if (data.content && data.content[0]) {
+      addMessage('ai', data.content[0].text);
+    } else {
+      addMessage('ai', '⚠️ Unexpected response from AI. Please try again.');
+    }
+  } catch (err) {
+    removeTyping();
+    addMessage('ai', '⚠️ Error connecting to AI. Please check your connection and try again.');
+  } finally {
+    chatInput.disabled = false;
+    sendBtn.disabled = false;
+    chatInput.focus();
+  }
+}
+
+sendBtn.addEventListener('click', sendMessage);
+chatInput.addEventListener('keydown', e => {
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); sendMessage(); }
+});
+
+// Auto-resize textarea
+chatInput.addEventListener('input', function() {
+  this.style.height = 'auto';
+  this.style.height = Math.min(this.scrollHeight, 120) + 'px';
+});
+
+// Smooth reveal on scroll
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach(entry => {
+    if (entry.isIntersecting) {
+      entry.target.style.opacity = '1';
+      entry.target.style.transform = 'translateY(0)';
+    }
+  });
+}, { threshold: 0.1 });
+
+document.querySelectorAll('.project-card, .skill-card, .edu-card').forEach(el => {
+  el.style.opacity = '0';
+  el.style.transform = 'translateY(20px)';
+  el.style.transition = 'opacity 0.5s ease, transform 0.5s ease';
+  observer.observe(el);
+});
+</script>
+</body>
+</html>
